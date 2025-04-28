@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Coverage Report</title>
+<link title="Style" type="text/css" rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" src="js/popup.js"></script>
+</head>
+<body>
+<h5>Coverage Report - javatools.parsers.PlingStemmer</h5>
+<div class="separator">&nbsp;</div>
+<table class="report">
+<thead><tr>  <td class="heading">Classes in this File</td>  <td class="heading"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Line Coverage</a></td>  <td class="heading"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Branch Coverage</a></td>  <td class="heading"><a class="dfn" href="help.html" onclick="popupwindow('help.html'); return false;">Complexity</a></td></tr></thead>
+  <tr><td><a href="javatools.parsers.PlingStemmer.html">PlingStemmer</a></td><td><table cellpadding="0px" cellspacing="0px" class="percentgraph"><tr class="percentgraph"><td align="right" class="percentgraph" width="40">0%</td><td class="percentgraph"><div class="percentgraph"><div class="greenbar" style="width:0px"><span class="text">0/72</span></div></div></td></tr></table></td><td><table cellpadding="0px" cellspacing="0px" class="percentgraph"><tr class="percentgraph"><td align="right" class="percentgraph" width="40">0%</td><td class="percentgraph"><div class="percentgraph"><div class="greenbar" style="width:0px"><span class="text">0/166</span></div></div></td></tr></table></td><td class="value"><span class="hidden">15.0;</span>15</td></tr>
+
+</table>
+<div class="separator">&nbsp;</div>
+<table cellspacing="0" cellpadding="0" class="src">
+<tr>  <td class="numLine">&nbsp;1</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">package</span> javatools.parsers;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;2</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;3</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.BufferedReader;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;4</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.io.InputStreamReader;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;5</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Map;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;6</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> java.util.Set;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;7</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;8</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> javatools.datatypes.FinalMap;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;9</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="keyword">import</span> javatools.datatypes.FinalSet;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;10</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;11</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">/** </span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;12</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">Copyright 2016 Fabian M. Suchanek</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;13</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;14</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">Licensed under the Apache License, Version 2.0 (the "License");</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;15</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">you may not use this file except in compliance with the License.</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;16</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">You may obtain a copy of the License at</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;17</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;18</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">    http://www.apache.org/licenses/LICENSE-2.0</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;19</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;20</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">Unless required by applicable law or agreed to in writing, software</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;21</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">distributed under the License is distributed on an "AS IS" BASIS,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;22</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;23</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">See the License for the specific language governing permissions and</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;24</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">limitations under the License. </span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;25</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment"> </span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;26</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  The PlingStemmer stems an English noun (plural or singular) to its singular</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;28</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  form. It deals with "firemen"-&amp;gt;"fireman", it knows Greek stuff like</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;29</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  "appendices"-&amp;gt;"appendix" and yes, it was a lot of work to compile these exceptions.</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;30</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  Examples:</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;31</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  &lt;PRE&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;32</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("boy"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt; boy</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("boys"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;35</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt; boy</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;36</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("biophysics"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;37</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt;  biophysics</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;38</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("automata"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt; automaton</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;40</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("genus"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt; genus</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      System.out.println(PlingStemmer.stem("emus"));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">      ----&amp;gt; emu</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  &lt;/PRE&gt;&lt;P&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  There are a number of word forms that can either be plural or singular.</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;47</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  Examples include "physics" (the science or the plural of "physic" (the</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  medicine)), "quarters" (the housing or the plural of "quarter" (1/4))</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  or "people" (the singular of "peoples" or the plural of "person"). In</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  these cases, the stemmer assumes the word is a plural form and returns</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;51</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  the singular form. The methods isPlural, isSingular and isPluralAndSingular</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;52</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  can be used to differentiate the cases.&lt;P&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;53</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;54</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  It cannot be guaranteed that the stemmer correctly stems a plural word</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;55</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  or correctly ignores a singular word -- let alone that it treats an</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  ambiguous word form in the way expected by the user.&lt;P&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  </span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;58</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  The PlingStemmer uses material from &lt;A HREF=http://wordnet.princeton.edu/&gt;WordNet&lt;/A&gt;.&lt;P&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;59</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  It requires the class FinalSet from the &lt;A HREF=http://www.mpii.mpg.de/~suchanek/downloads/javatools&gt;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">  Java Tools&lt;/A&gt;.</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;61</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;62</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<span class="keyword">public</span> <span class="keyword">class</span> PlingStemmer {</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Tells whether a word form is plural. This method just checks whether the</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">   * stem method alters the word */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isPlural(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsUncovered"><a title="Line 67: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 67: Conditional coverage 0% (0/2).">    <span class="keyword">return</span> (!s.equals(stem(s)));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Tells whether a word form is singular. Note that a word can be both plural and singular */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isSingular(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsUncovered"><a title="Line 72: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 72: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">return</span> (singAndPlur.contains(s.toLowerCase()) || !isPlural(s));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Tells whether a word form is the singular form of one word and at</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">   * the same time the plural form of another.*/</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isSingularAndPlural(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> (singAndPlur.contains(s.toLowerCase()));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;81</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Cuts a suffix from a string (that is the number of chars given by the suffix) */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> String cut(String s, String suffix) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> (s.substring(0, s.length() - suffix.length()));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;84</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;86</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Returns true if a word is probably not Latin */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> noLatin(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;88</td>  <td class="nbHitsUncovered"><a title="Line 88: Conditional coverage 0% (0/12) [each condition: 0%, 0%, 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 88: Conditional coverage 0% (0/12) [each condition: 0%, 0%, 0%, 0%, 0%, 0%].">    <span class="keyword">return</span> (s.indexOf(<span class="string">'h'</span>) &gt; 0 || s.indexOf(<span class="string">'j'</span>) &gt; 0 || s.indexOf(<span class="string">'k'</span>) &gt; 0 || s.indexOf(<span class="string">'w'</span>) &gt; 0 || s.indexOf(<span class="string">'y'</span>) &gt; 0 || s.indexOf(<span class="string">'z'</span>) &gt; 0</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;89</td>  <td class="nbHitsUncovered"><a title="Line 89: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 89: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">        || s.indexOf(<span class="string">"ou"</span>) &gt; 0 || s.indexOf(<span class="string">"sh"</span>) &gt; 0 || s.indexOf(<span class="string">"ch"</span>) &gt; 0 || s.endsWith(<span class="string">"aus"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;92</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Returns true if a word is probably Greek */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> greek(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;94</td>  <td class="nbHitsUncovered"><a title="Line 94: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 94: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">    <span class="keyword">return</span> (s.indexOf(<span class="string">"ph"</span>) &gt; 0 || s.indexOf(<span class="string">'y'</span>) &gt; 0 &amp;&amp; s.endsWith(<span class="string">"nges"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;95</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;96</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;97</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Stems an English noun */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;98</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> String stem(String s) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;99</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    String stem = s;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;100</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;101</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Handle irregular ones</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;102</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    String irreg = irregular.get(s);</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsUncovered"><a title="Line 103: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 103: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (irreg != <span class="keyword">null</span>) <span class="keyword">return</span> (stem = irreg);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;104</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;105</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -on to -a</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsUncovered"><a title="Line 106: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 106: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryON_A.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"a"</span>) + <span class="string">"on"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;107</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;108</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -um to -a</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsUncovered"><a title="Line 109: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 109: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryUM_A.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"a"</span>) + <span class="string">"um"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;110</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -x to -ices</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered"><a title="Line 112: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 112: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryIX_ICES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"ices"</span>) + <span class="string">"ix"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -o to -i</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsUncovered"><a title="Line 115: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 115: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryO_I.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"i"</span>) + <span class="string">"o"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;116</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;117</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -se to ses</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;118</td>  <td class="nbHitsUncovered"><a title="Line 118: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 118: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categorySE_SES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"s"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;119</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;120</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -is to -es</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsUncovered"><a title="Line 121: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 121: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (categoryIS_ES.contains(s) || s.endsWith(<span class="string">"theses"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>) + <span class="string">"is"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;122</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;123</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -us to -i</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsUncovered"><a title="Line 124: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 124: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryUS_I.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"i"</span>) + <span class="string">"us"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;125</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//Wrong plural</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;126</td>  <td class="nbHitsUncovered"><a title="Line 126: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 126: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"uses"</span>) &amp;&amp; (categoryUS_I.contains(cut(s, <span class="string">"uses"</span>) + <span class="string">"i"</span>) || s.equals(<span class="string">"genuses"</span>) || s.equals(<span class="string">"corpuses"</span>)))</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;127</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;128</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;129</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -ex to -ices</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;130</td>  <td class="nbHitsUncovered"><a title="Line 130: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 130: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (categoryEX_ICES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"ices"</span>) + <span class="string">"ex"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;131</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;132</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Words that do not inflect in the plural</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;133</td>  <td class="nbHitsUncovered"><a title="Line 133: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 133: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ois"</span>) || s.endsWith(<span class="string">"itis"</span>) || category00.contains(s) || categoryICS.contains(s)) <span class="keyword">return</span> (stem = s);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;134</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;135</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -en to -ina</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;136</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No other common words end in -ina</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsUncovered"><a title="Line 137: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 137: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ina"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"en"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;138</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;139</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -a to -ae</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;140</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No other common words end in -ae</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;141</td>  <td class="nbHitsUncovered"><a title="Line 141: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 141: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ae"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"e"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;142</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;143</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -a to -ata</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;144</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No other common words end in -ata</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;145</td>  <td class="nbHitsUncovered"><a title="Line 145: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 145: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ata"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"ta"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;146</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;147</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// trix to -trices</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;148</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No common word ends with -trice(s)</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsUncovered"><a title="Line 149: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 149: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"trices"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"trices"</span>) + <span class="string">"trix"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;150</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;151</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -us to -us</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;152</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common word ends in -us, except for false plurals of French words</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;153</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//Catch words that are not latin or known to end in -u</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;154</td>  <td class="nbHitsUncovered"><a title="Line 154: Conditional coverage 0% (0/10) [each condition: 0%, 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 154: Conditional coverage 0% (0/10) [each condition: 0%, 0%, 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"us"</span>) &amp;&amp; !s.endsWith(<span class="string">"eaus"</span>) &amp;&amp; !s.endsWith(<span class="string">"ieus"</span>) &amp;&amp; !noLatin(s) &amp;&amp; !categoryU_US.contains(s)) <span class="keyword">return</span> (stem = s);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;155</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;156</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -tooth to -teeth</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;157</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -goose to -geese</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;158</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -foot to -feet</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;159</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -zoon to -zoa</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;160</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common words end with the indicated suffixes</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;161</td>  <td class="nbHitsUncovered"><a title="Line 161: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 161: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"teeth"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"teeth"</span>) + <span class="string">"tooth"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;162</td>  <td class="nbHitsUncovered"><a title="Line 162: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 162: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"geese"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"geese"</span>) + <span class="string">"goose"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;163</td>  <td class="nbHitsUncovered"><a title="Line 163: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 163: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"feet"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"feet"</span>) + <span class="string">"foot"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsUncovered"><a title="Line 164: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 164: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"zoa"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"zoa"</span>) + <span class="string">"zoon"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;165</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;166</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -eau to -eaux</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;167</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common words end in eaux</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;168</td>  <td class="nbHitsUncovered"><a title="Line 168: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 168: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"eaux"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"x"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;169</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;170</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -ieu to -ieux</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;171</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common words end in ieux</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsUncovered"><a title="Line 172: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 172: Conditional coverage 0% (0/2).">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ieux"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"x"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;173</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;174</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -nx to -nges</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;175</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Pay attention not to kill words ending in -nge with plural -nges</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;176</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Take only Greek words (works fine, only a handfull of exceptions)</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;177</td>  <td class="nbHitsUncovered"><a title="Line 177: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 177: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"nges"</span>) &amp;&amp; greek(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"nges"</span>) + <span class="string">"nx"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;178</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;179</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -[sc]h to -[sc]hes</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;180</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common word ends with "shes", "ches" or "she(s)"</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;181</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//Quite a lot end with "che(s)", filter them out</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;182</td>  <td class="nbHitsUncovered"><a title="Line 182: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 182: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"shes"</span>) || s.endsWith(<span class="string">"ches"</span>) &amp;&amp; !categoryCHE_CHES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;183</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;184</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -ss to -sses</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;185</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No other common singular word ends with "sses"</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;186</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Filter out those ending in "sse(s)"</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;187</td>  <td class="nbHitsUncovered"><a title="Line 187: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 187: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"sses"</span>) &amp;&amp; !categorySSE_SSES.contains(s) &amp;&amp; !s.endsWith(<span class="string">"mousses"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;188</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;189</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -x to -xes</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;190</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// No other common word ends with "xe(s)" except for "axe"</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;191</td>  <td class="nbHitsUncovered"><a title="Line 191: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 191: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"xes"</span>) &amp;&amp; !s.equals(<span class="string">"axes"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;192</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;193</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -[nlw]ife to -[nlw]ives</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;194</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">//No other common word ends with "[nlw]ive(s)" except for olive</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;195</td>  <td class="nbHitsUncovered"><a title="Line 195: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 195: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"nives"</span>) || s.endsWith(<span class="string">"lives"</span>) &amp;&amp; !s.endsWith(<span class="string">"olives"</span>) || s.endsWith(<span class="string">"wives"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"ves"</span>) + <span class="string">"fe"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;196</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;197</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -[aeo]lf to -ves  exceptions: valve, solve</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;198</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -[^d]eaf to -ves  exceptions: heave, weave</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;199</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -arf to -ves      no exception</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;200</td>  <td class="nbHitsUncovered"><a title="Line 200: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 200: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"alves"</span>) &amp;&amp; !s.endsWith(<span class="string">"valves"</span>) || s.endsWith(<span class="string">"olves"</span>) &amp;&amp; !s.endsWith(<span class="string">"solves"</span>)</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;201</td>  <td class="nbHitsUncovered"><a title="Line 201: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 201: Conditional coverage 0% (0/8) [each condition: 0%, 0%, 0%, 0%].">        || s.endsWith(<span class="string">"eaves"</span>) &amp;&amp; !s.endsWith(<span class="string">"heaves"</span>) &amp;&amp; !s.endsWith(<span class="string">"weaves"</span>) || s.endsWith(<span class="string">"arves"</span>))</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;202</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      <span class="keyword">return</span> (stem = cut(s, <span class="string">"ves"</span>) + <span class="string">"f"</span>);</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;203</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;204</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -y to -ies</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;205</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -ies is very uncommon as a singular suffix</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;206</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// but -ie is quite common, filter them out</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;207</td>  <td class="nbHitsUncovered"><a title="Line 207: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 207: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ies"</span>) &amp;&amp; !categoryIE_IES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"ies"</span>) + <span class="string">"y"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;208</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;209</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -o to -oes</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;210</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// Some words end with -oe, so don't kill the "e"</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;211</td>  <td class="nbHitsUncovered"><a title="Line 211: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 211: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"oes"</span>) &amp;&amp; !categoryOE_OES.contains(s)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;212</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;213</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -s to -ses</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;214</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// -z to -zes</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;215</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// no words end with "-ses" or "-zes" in singular</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;216</td>  <td class="nbHitsUncovered"><a title="Line 216: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 216: Conditional coverage 0% (0/4) [each condition: 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"ses"</span>) || s.endsWith(<span class="string">"zes"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"es"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;217</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;218</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="comment">// - to -s</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;219</td>  <td class="nbHitsUncovered"><a title="Line 219: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 219: Conditional coverage 0% (0/6) [each condition: 0%, 0%, 0%].">    <span class="keyword">if</span> (s.endsWith(<span class="string">"s"</span>) &amp;&amp; !s.endsWith(<span class="string">"ss"</span>) &amp;&amp; !s.endsWith(<span class="string">"is"</span>)) <span class="keyword">return</span> (stem = cut(s, <span class="string">"s"</span>));</a></span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;220</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;221</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    <span class="keyword">return</span> stem;</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;222</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  }</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;223</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;224</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that end in "-se" in their plural forms (like "nurse" etc.)*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;225</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categorySE_SES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"nurses"</span>, <span class="string">"cruises"</span>, <span class="string">"premises"</span>, <span class="string">"houses"</span>, <span class="string">"courses"</span>, <span class="string">"cases"</span>);</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;226</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;227</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that do not have a distinct plural form (like "atlas" etc.)*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;228</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; category00 = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"alias"</span>, <span class="string">"asbestos"</span>, <span class="string">"atlas"</span>, <span class="string">"barracks"</span>, <span class="string">"bathos"</span>, <span class="string">"bias"</span>, <span class="string">"breeches"</span>, <span class="string">"britches"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;229</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"canvas"</span>, <span class="string">"chaos"</span>, <span class="string">"clippers"</span>, <span class="string">"contretemps"</span>, <span class="string">"corps"</span>, <span class="string">"cosmos"</span>, <span class="string">"crossroads"</span>, <span class="string">"diabetes"</span>, <span class="string">"ethos"</span>, <span class="string">"gallows"</span>, <span class="string">"gas"</span>, <span class="string">"graffiti"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;230</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"headquarters"</span>, <span class="string">"herpes"</span>, <span class="string">"high-jinks"</span>, <span class="string">"innings"</span>, <span class="string">"jackanapes"</span>, <span class="string">"lens"</span>, <span class="string">"means"</span>, <span class="string">"measles"</span>, <span class="string">"mews"</span>, <span class="string">"mumps"</span>, <span class="string">"news"</span>, <span class="string">"pathos"</span>, <span class="string">"pincers"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;231</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"pliers"</span>, <span class="string">"proceedings"</span>, <span class="string">"rabies"</span>, <span class="string">"rhinoceros"</span>, <span class="string">"sassafras"</span>, <span class="string">"scissors"</span>, <span class="string">"series"</span>, <span class="string">"shears"</span>, <span class="string">"species"</span>, <span class="string">"tuna"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;232</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;233</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-um" to "-a" (like "curriculum" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;234</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryUM_A = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"addenda"</span>, <span class="string">"agenda"</span>, <span class="string">"aquaria"</span>, <span class="string">"bacteria"</span>, <span class="string">"candelabra"</span>, <span class="string">"compendia"</span>, <span class="string">"consortia"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;235</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"crania"</span>, <span class="string">"curricula"</span>, <span class="string">"data"</span>, <span class="string">"desiderata"</span>, <span class="string">"dicta"</span>, <span class="string">"emporia"</span>, <span class="string">"enconia"</span>, <span class="string">"errata"</span>, <span class="string">"extrema"</span>, <span class="string">"gymnasia"</span>, <span class="string">"honoraria"</span>, <span class="string">"interregna"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;236</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"lustra"</span>, <span class="string">"maxima"</span>, <span class="string">"media"</span>, <span class="string">"memoranda"</span>, <span class="string">"millenia"</span>, <span class="string">"minima"</span>, <span class="string">"momenta"</span>, <span class="string">"optima"</span>, <span class="string">"ova"</span>, <span class="string">"phyla"</span>, <span class="string">"quanta"</span>, <span class="string">"rostra"</span>, <span class="string">"spectra"</span>, <span class="string">"specula"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;237</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"stadia"</span>, <span class="string">"strata"</span>, <span class="string">"symposia"</span>, <span class="string">"trapezia"</span>, <span class="string">"ultimata"</span>, <span class="string">"vacua"</span>, <span class="string">"vela"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;238</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;239</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-on" to "-a" (like "phenomenon" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;240</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryON_A = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"aphelia"</span>, <span class="string">"asyndeta"</span>, <span class="string">"automata"</span>, <span class="string">"criteria"</span>, <span class="string">"hyperbata"</span>, <span class="string">"noumena"</span>, <span class="string">"organa"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;241</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"perihelia"</span>, <span class="string">"phenomena"</span>, <span class="string">"prolegomena"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;242</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;243</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-o" to "-i" (like "libretto" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;244</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryO_I = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"alti"</span>, <span class="string">"bassi"</span>, <span class="string">"canti"</span>, <span class="string">"contralti"</span>, <span class="string">"crescendi"</span>, <span class="string">"libretti"</span>, <span class="string">"soli"</span>, <span class="string">"soprani"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;245</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"tempi"</span>, <span class="string">"virtuosi"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;246</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;247</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-us" to "-i" (like "fungus" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;248</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryUS_I = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"alumni"</span>, <span class="string">"bacilli"</span>, <span class="string">"cacti"</span>, <span class="string">"foci"</span>, <span class="string">"fungi"</span>, <span class="string">"genii"</span>, <span class="string">"hippopotami"</span>, <span class="string">"incubi"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;249</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"nimbi"</span>, <span class="string">"nuclei"</span>, <span class="string">"nucleoli"</span>, <span class="string">"octopi"</span>, <span class="string">"radii"</span>, <span class="string">"stimuli"</span>, <span class="string">"styli"</span>, <span class="string">"succubi"</span>, <span class="string">"syllabi"</span>, <span class="string">"termini"</span>, <span class="string">"tori"</span>, <span class="string">"umbilici"</span>, <span class="string">"uteri"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;250</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;251</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-ix" to "-ices" (like "appendix" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;252</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryIX_ICES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"appendices"</span>, <span class="string">"cervices"</span>);</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;253</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;254</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-is" to "-es" (like "axis" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;255</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryIS_ES = <span class="keyword">new</span> FinalSet&lt;String&gt;(</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;256</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="comment">// plus everybody ending in theses</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;257</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"analyses"</span>, <span class="string">"axes"</span>, <span class="string">"bases"</span>, <span class="string">"crises"</span>, <span class="string">"diagnoses"</span>, <span class="string">"ellipses"</span>, <span class="string">"emphases"</span>, <span class="string">"neuroses"</span>, <span class="string">"oases"</span>, <span class="string">"paralyses"</span>, <span class="string">"synopses"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;258</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;259</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-oe" to "-oes" (like "toe" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;260</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryOE_OES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"aloes"</span>, <span class="string">"backhoes"</span>, <span class="string">"beroes"</span>, <span class="string">"canoes"</span>, <span class="string">"chigoes"</span>, <span class="string">"cohoes"</span>, <span class="string">"does"</span>, <span class="string">"felloes"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;261</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"floes"</span>, <span class="string">"foes"</span>, <span class="string">"gumshoes"</span>, <span class="string">"hammertoes"</span>, <span class="string">"hoes"</span>, <span class="string">"hoopoes"</span>, <span class="string">"horseshoes"</span>, <span class="string">"leucothoes"</span>, <span class="string">"mahoes"</span>, <span class="string">"mistletoes"</span>, <span class="string">"oboes"</span>, <span class="string">"overshoes"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;262</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"pahoehoes"</span>, <span class="string">"pekoes"</span>, <span class="string">"roes"</span>, <span class="string">"shoes"</span>, <span class="string">"sloes"</span>, <span class="string">"snowshoes"</span>, <span class="string">"throes"</span>, <span class="string">"tic-tac-toes"</span>, <span class="string">"tick-tack-toes"</span>, <span class="string">"ticktacktoes"</span>, <span class="string">"tiptoes"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;263</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"tit-tat-toes"</span>, <span class="string">"toes"</span>, <span class="string">"toetoes"</span>, <span class="string">"tuckahoes"</span>, <span class="string">"woes"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;264</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;265</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-ex" to "-ices" (like "index" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;266</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryEX_ICES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"apices"</span>, <span class="string">"codices"</span>, <span class="string">"cortices"</span>, <span class="string">"indices"</span>, <span class="string">"latices"</span>, <span class="string">"murices"</span>, <span class="string">"pontifices"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;267</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"silices"</span>, <span class="string">"simplices"</span>, <span class="string">"vertices"</span>, <span class="string">"vortices"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;268</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;269</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-u" to "-us" (like "emu" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;270</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryU_US = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"apercus"</span>, <span class="string">"barbus"</span>, <span class="string">"cornus"</span>, <span class="string">"ecrus"</span>, <span class="string">"emus"</span>, <span class="string">"fondus"</span>, <span class="string">"gnus"</span>, <span class="string">"iglus"</span>, <span class="string">"mus"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;271</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"nandus"</span>, <span class="string">"napus"</span>, <span class="string">"poilus"</span>, <span class="string">"quipus"</span>, <span class="string">"snafus"</span>, <span class="string">"tabus"</span>, <span class="string">"tamandus"</span>, <span class="string">"tatus"</span>, <span class="string">"timucus"</span>, <span class="string">"tiramisus"</span>, <span class="string">"tofus"</span>, <span class="string">"tutus"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;272</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;273</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-sse" to "-sses" (like "finesse" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;274</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categorySSE_SSES = <span class="keyword">new</span> FinalSet&lt;String&gt;(</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;275</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="comment">//plus those ending in mousse</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;276</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"bouillabaisses"</span>, <span class="string">"coulisses"</span>, <span class="string">"crevasses"</span>, <span class="string">"crosses"</span>, <span class="string">"cuisses"</span>, <span class="string">"demitasses"</span>, <span class="string">"ecrevisses"</span>, <span class="string">"fesses"</span>, <span class="string">"finesses"</span>, <span class="string">"fosses"</span>, <span class="string">"impasses"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;277</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"lacrosses"</span>, <span class="string">"largesses"</span>, <span class="string">"masses"</span>, <span class="string">"noblesses"</span>, <span class="string">"palliasses"</span>, <span class="string">"pelisses"</span>, <span class="string">"politesses"</span>, <span class="string">"posses"</span>, <span class="string">"tasses"</span>, <span class="string">"wrasses"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;278</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;279</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-che" to "-ches" (like "brioche" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;280</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryCHE_CHES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"adrenarches"</span>, <span class="string">"attaches"</span>, <span class="string">"avalanches"</span>, <span class="string">"barouches"</span>, <span class="string">"brioches"</span>, <span class="string">"caches"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;281</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"caleches"</span>, <span class="string">"caroches"</span>, <span class="string">"cartouches"</span>, <span class="string">"cliches"</span>, <span class="string">"cloches"</span>, <span class="string">"creches"</span>, <span class="string">"demarches"</span>, <span class="string">"douches"</span>, <span class="string">"gouaches"</span>, <span class="string">"guilloches"</span>, <span class="string">"headaches"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;282</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"heartaches"</span>, <span class="string">"huaraches"</span>, <span class="string">"menarches"</span>, <span class="string">"microfiches"</span>, <span class="string">"moustaches"</span>, <span class="string">"mustaches"</span>, <span class="string">"niches"</span>, <span class="string">"panaches"</span>, <span class="string">"panoches"</span>, <span class="string">"pastiches"</span>, <span class="string">"penuches"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;283</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"pinches"</span>, <span class="string">"postiches"</span>, <span class="string">"psyches"</span>, <span class="string">"quiches"</span>, <span class="string">"schottisches"</span>, <span class="string">"seiches"</span>, <span class="string">"soutaches"</span>, <span class="string">"synecdoches"</span>, <span class="string">"thelarches"</span>, <span class="string">"troches"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;284</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;285</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that end with "-ics" and do not exist as nouns without the 's' (like "aerobics" etc.)*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;286</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryICS = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"aerobatics"</span>, <span class="string">"aerobics"</span>, <span class="string">"aerodynamics"</span>, <span class="string">"aeromechanics"</span>, <span class="string">"aeronautics"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;287</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"alphanumerics"</span>, <span class="string">"animatronics"</span>, <span class="string">"apologetics"</span>, <span class="string">"architectonics"</span>, <span class="string">"astrodynamics"</span>, <span class="string">"astronautics"</span>, <span class="string">"astrophysics"</span>, <span class="string">"athletics"</span>, <span class="string">"atmospherics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;288</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"autogenics"</span>, <span class="string">"avionics"</span>, <span class="string">"ballistics"</span>, <span class="string">"bibliotics"</span>, <span class="string">"bioethics"</span>, <span class="string">"biometrics"</span>, <span class="string">"bionics"</span>, <span class="string">"bionomics"</span>, <span class="string">"biophysics"</span>, <span class="string">"biosystematics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;289</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"cacogenics"</span>, <span class="string">"calisthenics"</span>, <span class="string">"callisthenics"</span>, <span class="string">"catoptrics"</span>, <span class="string">"civics"</span>, <span class="string">"cladistics"</span>, <span class="string">"cryogenics"</span>, <span class="string">"cryonics"</span>, <span class="string">"cryptanalytics"</span>, <span class="string">"cybernetics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;290</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"cytoarchitectonics"</span>, <span class="string">"cytogenetics"</span>, <span class="string">"diagnostics"</span>, <span class="string">"dietetics"</span>, <span class="string">"dramatics"</span>, <span class="string">"dysgenics"</span>, <span class="string">"econometrics"</span>, <span class="string">"economics"</span>, <span class="string">"electromagnetics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;291</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"electronics"</span>, <span class="string">"electrostatics"</span>, <span class="string">"endodontics"</span>, <span class="string">"enterics"</span>, <span class="string">"ergonomics"</span>, <span class="string">"eugenics"</span>, <span class="string">"eurhythmics"</span>, <span class="string">"eurythmics"</span>, <span class="string">"exodontics"</span>, <span class="string">"fibreoptics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;292</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"futuristics"</span>, <span class="string">"genetics"</span>, <span class="string">"genomics"</span>, <span class="string">"geographics"</span>, <span class="string">"geophysics"</span>, <span class="string">"geopolitics"</span>, <span class="string">"geriatrics"</span>, <span class="string">"glyptics"</span>, <span class="string">"graphics"</span>, <span class="string">"gymnastics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;293</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"hermeneutics"</span>, <span class="string">"histrionics"</span>, <span class="string">"homiletics"</span>, <span class="string">"hydraulics"</span>, <span class="string">"hydrodynamics"</span>, <span class="string">"hydrokinetics"</span>, <span class="string">"hydroponics"</span>, <span class="string">"hydrostatics"</span>, <span class="string">"hygienics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;294</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"informatics"</span>, <span class="string">"kinematics"</span>, <span class="string">"kinesthetics"</span>, <span class="string">"kinetics"</span>, <span class="string">"lexicostatistics"</span>, <span class="string">"linguistics"</span>, <span class="string">"lithoglyptics"</span>, <span class="string">"liturgics"</span>, <span class="string">"logistics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;295</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"macrobiotics"</span>, <span class="string">"macroeconomics"</span>, <span class="string">"magnetics"</span>, <span class="string">"magnetohydrodynamics"</span>, <span class="string">"mathematics"</span>, <span class="string">"metamathematics"</span>, <span class="string">"metaphysics"</span>, <span class="string">"microeconomics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;296</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"microelectronics"</span>, <span class="string">"mnemonics"</span>, <span class="string">"morphophonemics"</span>, <span class="string">"neuroethics"</span>, <span class="string">"neurolinguistics"</span>, <span class="string">"nucleonics"</span>, <span class="string">"numismatics"</span>, <span class="string">"obstetrics"</span>, <span class="string">"onomastics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;297</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"orthodontics"</span>, <span class="string">"orthopaedics"</span>, <span class="string">"orthopedics"</span>, <span class="string">"orthoptics"</span>, <span class="string">"paediatrics"</span>, <span class="string">"patristics"</span>, <span class="string">"patristics"</span>, <span class="string">"pedagogics"</span>, <span class="string">"pediatrics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;298</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"periodontics"</span>, <span class="string">"pharmaceutics"</span>, <span class="string">"pharmacogenetics"</span>, <span class="string">"pharmacokinetics"</span>, <span class="string">"phonemics"</span>, <span class="string">"phonetics"</span>, <span class="string">"phonics"</span>, <span class="string">"photomechanics"</span>, <span class="string">"physiatrics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;299</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"pneumatics"</span>, <span class="string">"poetics"</span>, <span class="string">"politics"</span>, <span class="string">"pragmatics"</span>, <span class="string">"prosthetics"</span>, <span class="string">"prosthodontics"</span>, <span class="string">"proteomics"</span>, <span class="string">"proxemics"</span>, <span class="string">"psycholinguistics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;300</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"psychometrics"</span>, <span class="string">"psychonomics"</span>, <span class="string">"psychophysics"</span>, <span class="string">"psychotherapeutics"</span>, <span class="string">"robotics"</span>, <span class="string">"semantics"</span>, <span class="string">"semiotics"</span>, <span class="string">"semitropics"</span>, <span class="string">"sociolinguistics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;301</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"stemmatics"</span>, <span class="string">"strategics"</span>, <span class="string">"subtropics"</span>, <span class="string">"systematics"</span>, <span class="string">"tectonics"</span>, <span class="string">"telerobotics"</span>, <span class="string">"therapeutics"</span>, <span class="string">"thermionics"</span>, <span class="string">"thermodynamics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;302</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"thermostatics"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;303</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;304</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Words that change from "-ie" to "-ies" (like "auntie" etc.), listed in their plural forms*/</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;305</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; categoryIE_IES = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"aeries"</span>, <span class="string">"anomies"</span>, <span class="string">"aunties"</span>, <span class="string">"baddies"</span>, <span class="string">"beanies"</span>, <span class="string">"birdies"</span>, <span class="string">"boccies"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;306</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"bogies"</span>, <span class="string">"bolshies"</span>, <span class="string">"bombies"</span>, <span class="string">"bonhomies"</span>, <span class="string">"bonxies"</span>, <span class="string">"booboisies"</span>, <span class="string">"boogies"</span>, <span class="string">"boogie-woogies"</span>, <span class="string">"bookies"</span>, <span class="string">"booties"</span>, <span class="string">"bosies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;307</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"bourgeoisies"</span>, <span class="string">"brasseries"</span>, <span class="string">"brassies"</span>, <span class="string">"brownies"</span>, <span class="string">"budgies"</span>, <span class="string">"byrnies"</span>, <span class="string">"caddies"</span>, <span class="string">"calories"</span>, <span class="string">"camaraderies"</span>, <span class="string">"capercaillies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;308</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"capercailzies"</span>, <span class="string">"cassies"</span>, <span class="string">"catties"</span>, <span class="string">"causeries"</span>, <span class="string">"charcuteries"</span>, <span class="string">"chinoiseries"</span>, <span class="string">"collies"</span>, <span class="string">"commies"</span>, <span class="string">"cookies"</span>, <span class="string">"coolies"</span>, <span class="string">"coonties"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;309</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"cooties"</span>, <span class="string">"corries"</span>, <span class="string">"coteries"</span>, <span class="string">"cowpies"</span>, <span class="string">"cowries"</span>, <span class="string">"cozies"</span>, <span class="string">"crappies"</span>, <span class="string">"crossties"</span>, <span class="string">"curies"</span>, <span class="string">"dachsies"</span>, <span class="string">"darkies"</span>, <span class="string">"dassies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;310</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"dearies"</span>, <span class="string">"dickies"</span>, <span class="string">"dies"</span>, <span class="string">"dixies"</span>, <span class="string">"doggies"</span>, <span class="string">"dogies"</span>, <span class="string">"dominies"</span>, <span class="string">"dovekies"</span>, <span class="string">"eyries"</span>, <span class="string">"faeries"</span>, <span class="string">"falsies"</span>, <span class="string">"floozies"</span>, <span class="string">"folies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;311</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"foodies"</span>, <span class="string">"freebies"</span>, <span class="string">"gaucheries"</span>, <span class="string">"gendarmeries"</span>, <span class="string">"genies"</span>, <span class="string">"ghillies"</span>, <span class="string">"gillies"</span>, <span class="string">"goalies"</span>, <span class="string">"goonies"</span>, <span class="string">"grannies"</span>, <span class="string">"grotesqueries"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;312</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"groupies"</span>, <span class="string">"hankies"</span>, <span class="string">"hippies"</span>, <span class="string">"hoagies"</span>, <span class="string">"honkies"</span>, <span class="string">"hymies"</span>, <span class="string">"indies"</span>, <span class="string">"junkies"</span>, <span class="string">"kelpies"</span>, <span class="string">"kilocalories"</span>, <span class="string">"knobkerries"</span>, <span class="string">"koppies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;313</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"kylies"</span>, <span class="string">"laddies"</span>, <span class="string">"lassies"</span>, <span class="string">"lies"</span>, <span class="string">"lingeries"</span>, <span class="string">"magpies"</span>, <span class="string">"magpies"</span>, <span class="string">"marqueteries"</span>, <span class="string">"mashies"</span>, <span class="string">"mealies"</span>, <span class="string">"meanies"</span>, <span class="string">"menageries"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;314</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"millicuries"</span>, <span class="string">"mollies"</span>, <span class="string">"facts1"</span>, <span class="string">"moxies"</span>, <span class="string">"neckties"</span>, <span class="string">"newbies"</span>, <span class="string">"nighties"</span>, <span class="string">"nookies"</span>, <span class="string">"oldies"</span>, <span class="string">"organdies"</span>, <span class="string">"panties"</span>, <span class="string">"parqueteries"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;315</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"passementeries"</span>, <span class="string">"patisseries"</span>, <span class="string">"pies"</span>, <span class="string">"pinkies"</span>, <span class="string">"pixies"</span>, <span class="string">"porkpies"</span>, <span class="string">"potpies"</span>, <span class="string">"prairies"</span>, <span class="string">"preemies"</span>, <span class="string">"premies"</span>, <span class="string">"punkies"</span>, <span class="string">"pyxies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;316</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"quickies"</span>, <span class="string">"ramies"</span>, <span class="string">"reveries"</span>, <span class="string">"rookies"</span>, <span class="string">"rotisseries"</span>, <span class="string">"scrapies"</span>, <span class="string">"sharpies"</span>, <span class="string">"smoothies"</span>, <span class="string">"softies"</span>, <span class="string">"stoolies"</span>, <span class="string">"stymies"</span>, <span class="string">"swaggies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;317</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"sweeties"</span>, <span class="string">"talkies"</span>, <span class="string">"techies"</span>, <span class="string">"ties"</span>, <span class="string">"tooshies"</span>, <span class="string">"toughies"</span>, <span class="string">"townies"</span>, <span class="string">"veggies"</span>, <span class="string">"walkie-talkies"</span>, <span class="string">"wedgies"</span>, <span class="string">"weenies"</span>, <span class="string">"weirdies"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;318</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"yardies"</span>, <span class="string">"yuppies"</span>, <span class="string">"zombies"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;319</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;320</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Maps irregular Germanic English plural nouns to their singular form */</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;321</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, String&gt; irregular = <span class="keyword">new</span> FinalMap&lt;String, String&gt;(<span class="string">"beefs"</span>, <span class="string">"beef"</span>, <span class="string">"beeves"</span>, <span class="string">"beef"</span>, <span class="string">"brethren"</span>, <span class="string">"brother"</span>, <span class="string">"busses"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;322</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"bus"</span>, <span class="string">"cattle"</span>, <span class="string">"cattlebeast"</span>, <span class="string">"children"</span>, <span class="string">"child"</span>, <span class="string">"corpora"</span>, <span class="string">"corpus"</span>, <span class="string">"ephemerides"</span>, <span class="string">"ephemeris"</span>, <span class="string">"firemen"</span>, <span class="string">"fireman"</span>, <span class="string">"genera"</span>, <span class="string">"genus"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;323</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"genies"</span>, <span class="string">"genie"</span>, <span class="string">"genii"</span>, <span class="string">"genie"</span>, <span class="string">"kine"</span>, <span class="string">"cow"</span>, <span class="string">"lice"</span>, <span class="string">"louse"</span>, <span class="string">"men"</span>, <span class="string">"man"</span>, <span class="string">"mice"</span>, <span class="string">"mouse"</span>, <span class="string">"mongooses"</span>, <span class="string">"mongoose"</span>, <span class="string">"monies"</span>, <span class="string">"money"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;324</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"mythoi"</span>, <span class="string">"mythos"</span>, <span class="string">"octopodes"</span>, <span class="string">"octopus"</span>, <span class="string">"octopuses"</span>, <span class="string">"octopus"</span>, <span class="string">"oxen"</span>, <span class="string">"ox"</span>, <span class="string">"people"</span>, <span class="string">"person"</span>, <span class="string">"soliloquies"</span>, <span class="string">"soliloquy"</span>, <span class="string">"throes"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;325</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"throes"</span>, <span class="string">"trilbys"</span>, <span class="string">"trilby"</span>, <span class="string">"women"</span>, <span class="string">"woman"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;326</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;327</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Contains word forms that can either be plural or singular */</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;328</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> Set&lt;String&gt; singAndPlur = <span class="keyword">new</span> FinalSet&lt;String&gt;(<span class="string">"acoustics"</span>, <span class="string">"aestetics"</span>, <span class="string">"aquatics"</span>, <span class="string">"basics"</span>, <span class="string">"ceramics"</span>, <span class="string">"classics"</span>, <span class="string">"cosmetics"</span>,</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;329</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"dermatoglyphics"</span>, <span class="string">"dialectics"</span>, <span class="string">"dynamics"</span>, <span class="string">"esthetics"</span>, <span class="string">"ethics"</span>, <span class="string">"harmonics"</span>, <span class="string">"heroics"</span>, <span class="string">"isometrics"</span>, <span class="string">"mechanics"</span>, <span class="string">"metrics"</span>, <span class="string">"statistics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;330</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"optic"</span>, <span class="string">"people"</span>, <span class="string">"physics"</span>, <span class="string">"polemics"</span>, <span class="string">"premises"</span>, <span class="string">"propaedeutics"</span>, <span class="string">"pyrotechnics"</span>, <span class="string">"quadratics"</span>, <span class="string">"quarters"</span>, <span class="string">"statistics"</span>, <span class="string">"tactics"</span>,</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;331</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;      <span class="string">"tropics"</span>);</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;332</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;</pre></td></tr>
+<tr>  <td class="numLine">&nbsp;333</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="comment">/** Test routine */</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;334</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] argv) <span class="keyword">throws</span> Exception {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;335</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    System.out.println(<span class="string">"Enter an English word in plural form and press ENTER"</span>);</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;336</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    BufferedReader in = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;337</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;    <span class="keyword">while</span> (<span class="keyword">true</span>) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;338</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      String w = in.readLine();</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;339</td>  <td class="nbHitsUncovered"><a title="Line 339: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 339: Conditional coverage 0% (0/2).">      <span class="keyword">if</span> (w.length() == 0) <span class="keyword">break</span>;</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;340</td>  <td class="nbHitsUncovered"><a title="Line 340: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 340: Conditional coverage 0% (0/2).">      <span class="keyword">if</span> (isPlural(w)) System.out.println(<span class="string">"This word is plural"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;341</td>  <td class="nbHitsUncovered"><a title="Line 341: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 341: Conditional coverage 0% (0/2).">      <span class="keyword">if</span> (isSingular(w)) System.out.println(<span class="string">"This word is singular"</span>);</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;342</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;      System.out.println(<span class="string">"Stemmed to singular: "</span> + stem(w));</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;343</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;    }</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;344</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;  }</span></pre></td></tr>
+<tr>  <td class="numLine">&nbsp;345</td>  <td class="nbHits">&nbsp;</td>
+  <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
+</table>
+
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 3/25/25 9:55 PM.</div>
+</body>
+</html>
